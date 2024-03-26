@@ -1,6 +1,6 @@
-import { initializeApp } from 'firebase/app'
+import { initializeApp } from 'firebase/app';
 
-import { getFirestore, colllection, getDocs} from 'firebase/firestore'
+import { getFirestore, collection, getDocs} from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCPx5W45ueJ5BFEIHHq7lNhrGnY2BGKzVA",
@@ -12,15 +12,21 @@ const firebaseConfig = {
     measurementId: "G-E84C8Y5HZ3"
   };
 
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
-const db = getFirestore()
+const db = getFirestore();
 
-const collectionref = colllection(db, 'chat_room')
+const collectionref = collection(db, 'chat_room');
 getDocs(collectionref).then(
-    (snapshot)=>{
-        console.log(snapshot);
+    (snapshot)=>
+    {
+        let chatroom =[]
+        snapshot.docs.forEach(
+            (doc)=> 
+            chatroom.push({...doc.data(), id:doc.id})
+        )
+        console.log(chatroom);
     }
-)
+);
  
 
