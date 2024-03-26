@@ -1,5 +1,6 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app'
+
+import { getFirestore, colllection, getDocs} from 'firebase/firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCPx5W45ueJ5BFEIHHq7lNhrGnY2BGKzVA",
@@ -11,5 +12,15 @@ const firebaseConfig = {
     measurementId: "G-E84C8Y5HZ3"
   };
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
+
 const db = getFirestore()
+
+const collectionref = colllection(db, 'chat_room')
+getDocs(collectionref).then(
+    (snapshot)=>{
+        console.log(snapshot);
+    }
+)
+ 
+
