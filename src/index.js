@@ -17,6 +17,7 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 
 const collectionref = collection(db, 'chat_room');
+
 getDocs(collectionref).then(
     (snapshot)=>
     {
@@ -27,6 +28,8 @@ getDocs(collectionref).then(
         )
         console.log(chatroom);
     }
-);
+).catch(
+    (err)=>{ console.log(err);
+});
  
 
